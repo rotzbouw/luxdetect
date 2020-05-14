@@ -9,11 +9,13 @@ Java service detecting language from text input. Idea stems from the often claim
 
 ## Evaluation
 LanguageDetectionServiceTest loads five validation test sets extracted from Wortschatz corpora (see below), calls the language detection service for each sentence and counts positive as well as negative matches.
+
     ENGLISH: 200923 positive, 77 negative => 99.96169154228856
     GERMAN: 200877 positive, 123 negative => 99.93880597014926
     FRENCH: 200884 positive, 116 negative => 99.94228855721393
     DUTCH: 200856 positive, 144 negative => 99.92835820895522
     LUXEMBOURGISH: 200814 positive, 186 negative => 99.90746268656716
+
 As we can see, it's not that hard to distinguish Luxembourgish from other, seemingly similar, languages. ;)
 
 ### Data
