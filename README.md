@@ -3,9 +3,28 @@
 Java service detecting language from text input. Idea stems from the often claimed idea that Luxembourgish sounds like or resembles either French, Dutch or German.
 
 ## Details
-- Can be deployed as part of HTTP server taking POST requests.
+- Can be deployed as part of HTTP server taking POST requests (see below).
 - Contains language models for Luxembourgish, German, French, Dutch and for completeness sake English
 - Language models crated using https://github.com/rotzbouw/ngramlanguagemodel
+
+### Web service
+Once the application has started, you can request language detection like follows:
+
+    $ curl localhost:8080 -X POST -H 'Content-Type: application/json' -d '{"text": "De Charly Gaul, gebuer den 8. Dezember 1932 am Pafendall a gestuerwen de 6. Dezember 2005 zu Lëtzebuerg, war e lëtzebuergesche Vëlossportler. Hien huet 1958 den Tour de France gewonnen."}'
+
+and it will return something like this:
+
+    {
+      "scoredLanguages": {
+        "LUXEMBOURGISH": -7684.8262319020905,
+        "ENGLISH": -9661.92351756399,
+        "GERMAN": -8846.610103666457,
+        "FRENCH": -9576.47393955048,
+        "DUTCH": -9015.457229347536
+      }
+    }
+
+The scores are the sum of the logarithmic probabilities of the relative frequencies of each n-gram (n={1,5}).
 
 ## Evaluation
 LanguageDetectionServiceTest loads five validation test sets extracted from Wortschatz corpora (see below), calls the language detection service for each sentence and counts positive as well as negative matches.
